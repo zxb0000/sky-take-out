@@ -34,4 +34,6 @@ public interface EmployeeMapper {
     Page<Employee> pageSelect(String name);
 
     void update(Employee employee);
+    @Select("select *from employee where id=#{id}")
+    Employee getById(Integer id);
 }
