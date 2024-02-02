@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sky.mapper.SetMealMapper">
+    <update id="update">
+        update setmeal
+        <set>
+            <if test="categoryId!=null"> category_id=#{categoryId},</if>
+            <if test="name!=null and name!=null"> name=#{name},</if>
+            <if test="price!=null"> price=#{price},</if>
+            <if test="status!=null"> status=#{status},</if>
+            <if test="description!=null and description!=null"> description=#{description},</if>
+            <if test="image!=null"> image=#{image},</if>
+            <if test="createTime!=null"> create_time=#{createTime},</if>
+            <if test="updateTime!=null"> update_time=#{updateTime},</if>
+            <if test="updateUser!=null"> update_user=#{updateUser},</if>
+            <if test="createUser!=null"> create_user=#{createUser}</if>
+        </set>
+        where id=#{id}
+    </update>
+
+    <delete id="deleteByIds">
+        delete from setmeal
+        where id in
+        <foreach collection="ids" item="id" separator="," open="(" close=")">
+            #{id}
+        </foreach>
+    </delete>
+    <select id="pageSelect" parameterType="com.sky.dto.SetmealPageQueryDTO" resultType="com.sky.vo.SetmealVO">
+        select setmeal.id,setmeal.category_id,setmeal.name,setmeal.price,setmeal.status,setmeal.description,setmeal.image,setmeal.update_time,category.name
+        from setmeal join category on setmeal.category_id = category.id
+        <where>
+            <if test="categoryId!=null">and category_id=#{categoryId}</if>
+            <if test="name!=null and name!=''"> and setmeal.name like concat('%',#{name},'%')</if>
+            <if test="status!=null">and setmeal.status=#{status}</if>
+        </where>
+
+    </select>
+</mapper>
