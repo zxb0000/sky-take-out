@@ -59,7 +59,7 @@ public class SetMealServiceImpl implements SetMealService {
         List<SetmealDish> setmealDishes = setmealDTO.getSetmealDishes();
         for (SetmealDish dish : setmealDishes) {
             if (dish != null) {
-
+                dish.setSetmealId(setmeal.getId());
                 setMealDishMapper.insert(dish);
             }
         }
@@ -80,6 +80,7 @@ public class SetMealServiceImpl implements SetMealService {
     @Override
     public void deleteByIds(Long[] ids) {
         setMealMapper.deleteByIds(ids);
+        setMealDishMapper.deleteBySetmealId(ids);
     }
 
     @Override
@@ -94,6 +95,7 @@ public class SetMealServiceImpl implements SetMealService {
         //循环更新套餐菜品关系
         for(SetmealDish setmealDish:setmealDishs){
             if(setmealDish==null) return;
+            setmealDish.setSetmealId(setmeal.getId());
             setMealDishMapper.update(setmealDish);
         }
 

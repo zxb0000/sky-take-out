@@ -15,8 +15,7 @@ import org.apache.ibatis.annotations.Update;
 public interface SetMealMapper {
     Page<SetmealVO> pageSelect(SetmealPageQueryDTO setmealPageQueryDTO);
 
-    @Insert("insert into setmeal(id, category_id, name, price, status, description, image, create_time, update_time, create_user, update_user)" +
-            "        values (#{id},#{categoryId},#{name},#{price},#{status},#{description},#{image},#{createTime},#{updateTime},#{createUser},#{updateUser})")
+
     void insertToSetMeal(Setmeal setmeal);
     void update(Setmeal setmeal);
 

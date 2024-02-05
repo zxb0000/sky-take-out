@@ -17,4 +17,6 @@ public interface SetMealDishMapper {
     @Insert("insert into setmeal_dish(id, setmeal_id, dish_id, name, price, copies) " +
             "values (#{id},#{setmealId},#{dishId},#{name},#{price},#{copies})")
     void insert(SetmealDish dish);
+
+    void deleteBySetmealId(Long[] ids);
 }

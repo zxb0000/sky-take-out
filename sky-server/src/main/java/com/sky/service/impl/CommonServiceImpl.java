@@ -15,8 +15,8 @@ public class CommonServiceImpl implements CommonService {
     @Autowired
     private CommonMapper commonMapper;
     private AliOssUtil aliOssUtil=new AliOssUtil("oss-cn-hangzhou.aliyuncs.com",
-            "LTAI5tM7oc7yo7eBKYmSKy8M",
-            "5twVILeGKWUCzPMIrYRAMzPcxgGaEk",
+            " ",
+            " ",
             "web-mytalis9669");
     @Override
     public String upload(MultipartFile file) throws IOException {
