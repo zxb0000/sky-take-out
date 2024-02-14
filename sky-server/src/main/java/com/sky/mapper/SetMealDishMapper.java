@@ -1,6 +1,8 @@
 package com.sky.mapper;
 
+import com.sky.annotation.AutoFill;
 import com.sky.entity.SetmealDish;
+import com.sky.enumeration.OperationType;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -13,10 +15,11 @@ public interface SetMealDishMapper {
 
     @Select("select * from setmeal_dish where setmeal_id=#{id}")
     List<SetmealDish> selectBySetMealId(Long id);
-
     @Insert("insert into setmeal_dish(id, setmeal_id, dish_id, name, price, copies) " +
             "values (#{id},#{setmealId},#{dishId},#{name},#{price},#{copies})")
     void insert(SetmealDish dish);
 
     void deleteBySetmealId(Long[] ids);
+
+    List<Long> getSetmealIdsByDishIds(List<Long> DishIds);
 }

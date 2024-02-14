@@ -4,5 +4,10 @@ sky:
     host: localhost
     port: 3306
     database: sky_take_out
-    username: zxb
+    username: root
     password: 1234
+  alioss:
+    access-key-id: LTAI5tNUN8Pck2rqpaokXXLm
+    access-key-secret: FitZeg0PPWN43EpmWZtTEWtoULZtDU
+    endpoint: oss-cn-hangzhou.aliyuncs.com
+    bucket-name: web-mytalis9669

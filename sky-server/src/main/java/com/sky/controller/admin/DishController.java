@@ -1,5 +1,6 @@
 package com.sky.controller.admin;
 
+import com.sky.dto.DishDTO;
 import com.sky.dto.DishPageQueryDTO;
 import com.sky.entity.Dish;
 import com.sky.result.PageResult;
@@ -10,10 +11,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -32,7 +30,7 @@ public class DishController {
     }
     @ApiOperation("根据id查询菜品")
     @GetMapping("/{id}")
-    public Result getById(@PathVariable Integer id){
+    public Result getById(@PathVariable Long id){
         DishVO dishVO = dishService.getByid(id);
         return Result.success(dishVO);
     }
@@ -41,5 +39,30 @@ public class DishController {
     public Result getByCategoryId(String categoryId){
        List<Dish> list=dishService.getByCategoryId( categoryId);
         return Result.success(list);
+    }
+    @ApiOperation("新增菜品")
+    @PostMapping
+    public Result addDish(@RequestBody DishDTO dishDTO){
+        dishService.addDish(dishDTO);
+        return Result.success();
+    }
+    @ApiOperation("删除菜品")
+    @DeleteMapping
+    public Result deleteDishes(@RequestParam List<Long> ids){
+        dishService.deleteDishes(ids);
+        return Result.success();
+    }
+    @ApiOperation("修改菜品")
+    @PutMapping
+    public Result update(@RequestBody DishDTO dishDTO){
+        dishService.update(dishDTO);
+        return Result.success();
+    }
+    @ApiOperation("起售禁售状态改变")
+    @PostMapping("/status/{status}")
+    public Result statusChange(@PathVariable Integer status,Long id){
+        log.info("id为：{}，状态：{}",id,status);
+        dishService.statusChange(status,id);
+        return Result.success();
     }
 }

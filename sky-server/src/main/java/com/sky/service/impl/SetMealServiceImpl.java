@@ -51,10 +51,10 @@ public class SetMealServiceImpl implements SetMealService {
         //将DTO转换实体
         Setmeal setmeal = new Setmeal();
         BeanUtils.copyProperties(setmealDTO, setmeal);
-        setmeal.setCreateTime(LocalDateTime.now());
-        setmeal.setCreateUser(BaseContext.getCurrentId());
-        setmeal.setUpdateTime(LocalDateTime.now());
-        setmeal.setUpdateUser(BaseContext.getCurrentId());
+        //setmeal.setCreateTime(LocalDateTime.now());
+        //setmeal.setCreateUser(BaseContext.getCurrentId());
+        //setmeal.setUpdateTime(LocalDateTime.now());
+       // setmeal.setUpdateUser(BaseContext.getCurrentId());
         setMealMapper.insertToSetMeal(setmeal);
         List<SetmealDish> setmealDishes = setmealDTO.getSetmealDishes();
         for (SetmealDish dish : setmealDishes) {
@@ -71,8 +71,8 @@ public class SetMealServiceImpl implements SetMealService {
         Setmeal setmeal = Setmeal.builder()
                 .status(status)
                 .id(id)
-                .updateTime(LocalDateTime.now())
-                .updateUser(BaseContext.getCurrentId())
+                //.updateTime(LocalDateTime.now())
+                //.updateUser(BaseContext.getCurrentId())
                 .build();
         setMealMapper.update(setmeal);
     }
@@ -89,8 +89,8 @@ public class SetMealServiceImpl implements SetMealService {
         List<SetmealDish> setmealDishs = setmealDTO.getSetmealDishes();
         BeanUtils.copyProperties(setmealDTO,setmeal);
         //先更新套餐表
-        setmeal.setUpdateUser(BaseContext.getCurrentId());
-        setmeal.setUpdateTime(LocalDateTime.now());
+        //setmeal.setUpdateUser(BaseContext.getCurrentId());
+        //setmeal.setUpdateTime(LocalDateTime.now());
         setMealMapper.update(setmeal);
         //循环更新套餐菜品关系
         for(SetmealDish setmealDish:setmealDishs){

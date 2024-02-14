@@ -12,12 +12,9 @@ import java.util.UUID;
 
 @Service
 public class CommonServiceImpl implements CommonService {
+
     @Autowired
-    private CommonMapper commonMapper;
-    private AliOssUtil aliOssUtil=new AliOssUtil("oss-cn-hangzhou.aliyuncs.com",
-            " ",
-            " ",
-            "web-mytalis9669");
+    private AliOssUtil aliOssUtil;
     @Override
     public String upload(MultipartFile file) throws IOException {
         String originalFilename = file.getOriginalFilename();

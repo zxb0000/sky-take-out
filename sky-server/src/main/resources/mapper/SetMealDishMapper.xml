@@ -26,4 +26,10 @@
             #{id}
         </foreach>
     </delete>
+    <select id="getSetmealIdsByDishIds" resultType="java.lang.Long">
+        select setmeal_id from setmeal_dish where dish_id in
+        <foreach collection="DishIds" separator="," item="id" close=")" open="(">
+            #{id}
+        </foreach>
+    </select>
 </mapper>

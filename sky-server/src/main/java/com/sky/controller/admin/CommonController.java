@@ -1,5 +1,6 @@
 package com.sky.controller.admin;
 
+import com.sky.constant.MessageConstant;
 import com.sky.result.Result;
 import com.sky.service.CommonService;
 import io.swagger.annotations.Api;
@@ -22,8 +23,10 @@ public class CommonController {
         private CommonService commonService;
         @PostMapping("/upload")
         @ApiOperation("上传文件")
-        public Result upload(@RequestBody MultipartFile file) throws IOException {
+        public Result<String> upload(@RequestBody MultipartFile file) throws IOException {
          String url= commonService.upload(file);
+         if (url.isEmpty())
+             return Result.error(MessageConstant.UPLOAD_FAILED);
          return Result.success(url);
         }
 }
