@@ -1,6 +1,5 @@
 package com.sky.service.impl;
 
-import com.sky.mapper.CommonMapper;
 import com.sky.service.CommonService;
 import com.sky.utils.AliOssUtil;
 import org.springframework.beans.factory.annotation.Autowired;

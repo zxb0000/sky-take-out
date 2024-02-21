@@ -4,8 +4,13 @@ sky:
     host: localhost
     port: 3306
     database: sky_take_out
-    username: root
+    username: zxb
     password: 1234
+  redis:
+      host: localhost
+      port: 6379
+      password: 123456
+      database: 0
   alioss:
     access-key-id: LTAI5tNUN8Pck2rqpaokXXLm
     access-key-secret: FitZeg0PPWN43EpmWZtTEWtoULZtDU
