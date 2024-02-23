@@ -16,3 +16,6 @@ sky:
     access-key-secret: FitZeg0PPWN43EpmWZtTEWtoULZtDU
     endpoint: oss-cn-hangzhou.aliyuncs.com
     bucket-name: web-mytalis9669
+  wechat:
+    appid: wxd0644ce770e34511
+    secret: 102b23ede768af6853077c5ba717a831
