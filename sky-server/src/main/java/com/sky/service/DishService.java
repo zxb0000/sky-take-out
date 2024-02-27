@@ -13,7 +13,7 @@ public interface DishService {
 
     DishVO getByid(Long id);
 
-    List<Dish> getByCategoryId(String categoryId);
+    List<Dish> getByCategoryId(Long categoryId);
 
     void addDish(DishDTO dishDTO);
 
@@ -22,4 +22,11 @@ public interface DishService {
     void update(DishDTO dishDTO);
 
     void statusChange(Integer status, Long id);
+
+    /**
+     * 根据分类的ID获取菜品的信息
+     * @param categoryId
+     * @return
+     */
+    List<DishVO> getMealsByCategoryId(Long categoryId);
 }

@@ -9,5 +9,5 @@ import java.util.List;
 public interface CategoryService {
     PageResult pageQuery(CategoryPageQueryDTO categoryPageQueryDTO);
 
-    List<Category> getByType(String type);
+    List<Category> getByType(Integer type);
 }

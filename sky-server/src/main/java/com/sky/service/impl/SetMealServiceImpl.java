@@ -109,4 +109,9 @@ public class SetMealServiceImpl implements SetMealService {
         setmealVO.setSetmealDishes(setmealDishes);
         return setmealVO;
     }
+
+    @Override
+    public List<Setmeal> getByCategoryId(Long categoryId) {
+        return setMealMapper.selectByCategoryId(categoryId);
+    }
 }

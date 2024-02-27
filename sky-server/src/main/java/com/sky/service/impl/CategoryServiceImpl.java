@@ -24,8 +24,8 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public List<Category> getByType(String type) {
-        List<Category> list=categoryMapper.pageQuery(null, Integer.valueOf(type));
+    public List<Category> getByType(Integer type) {
+        List<Category> list=categoryMapper.pageQuery(null, type);
         return list;
     }
 }

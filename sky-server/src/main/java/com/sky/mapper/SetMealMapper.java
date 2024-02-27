@@ -33,4 +33,6 @@ public interface SetMealMapper {
     SetmealVO selectByid(Long id);
 
 
+    @Select("select * from setmeal where category_id=#{categoryId}")
+    List<Setmeal> selectByCategoryId(Long categoryId);
 }

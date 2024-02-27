@@ -12,18 +12,17 @@ import com.sky.exception.DeletionNotAllowedException;
 import com.sky.mapper.DishFlavorMapper;
 import com.sky.mapper.DishMapper;
 import com.sky.mapper.SetMealDishMapper;
-import com.sky.mapper.SetMealMapper;
 import com.sky.result.PageResult;
 import com.sky.service.DishService;
-import com.sky.service.SetMealService;
 import com.sky.vo.DishVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -56,8 +55,8 @@ public class DishServiceImpl implements DishService {
     }
 
     @Override
-    public List<Dish> getByCategoryId(String categoryId) {
-        return dishMapper.getByCategoryId(Long.valueOf(categoryId));
+    public List<Dish> getByCategoryId(Long categoryId) {
+        return dishMapper.getByCategoryId(categoryId);
 
     }
 
@@ -128,5 +127,21 @@ public class DishServiceImpl implements DishService {
         dish.setId(id);
         dish.setStatus(status);
         dishMapper.update(dish);
+    }
+
+    @Override
+    public List<DishVO> getMealsByCategoryId(Long categoryId) {
+
+        List<Dish> dishes = dishMapper.getByCategoryId(categoryId);
+        List<DishVO> dishVOS=new ArrayList<>();
+        dishes.forEach(dish -> {
+            List<DishFlavor> dishFlavors = dishFlavorMapper.getByDishId(dish.getId());
+            DishVO dishVO=new DishVO();
+            BeanUtils.copyProperties(dish,dishVO);
+            dishVO.setFlavors(dishFlavors);
+            dishVOS.add(dishVO);
+        });
+
+        return dishVOS;
     }
 }
